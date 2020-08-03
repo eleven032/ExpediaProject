@@ -9,8 +9,10 @@ import {
 
 import useStyles from '../../utils/AppMakeStyle';
 
-function Home() {
+function Home({ history }) {
   const classes = useStyles();
+  console.log(history);
+
   return <Grid container component="main" className={classes.root}>
     <CssBaseline />
     <Grid item xs={false} sm={4} md={7} className={classes.image} />
@@ -18,7 +20,7 @@ function Home() {
       <div className={classes.paper}>
         <Typography component="h1" variant="h5">
           Administration System
-            </Typography>
+        </Typography>
         <Button
           type="submit"
           fullWidth
@@ -26,9 +28,10 @@ function Home() {
           color="primary"
           className={classes.submit}
           style={{ marginTop: 30 }}
+          onClick={() => { history.push("/infoTable") }}
         >
           Log In
-            </Button>
+        </Button>
       </div>
     </Grid>
   </Grid>;
