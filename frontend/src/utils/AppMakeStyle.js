@@ -1,7 +1,7 @@
 
 import { makeStyles } from '@material-ui/core';
 
-const useStyles = makeStyles((theme) => ({
+const homePageStyle = makeStyles((theme) => ({
   root: {
     height: '100vh',
   },
@@ -22,4 +22,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default useStyles;
+const infoTableStyle = makeStyles({
+  root: {
+    marginTop: 30,
+    marginLeft: '10%',
+    marginRight: '10%',
+  },
+});
+
+export { homePageStyle, infoTableStyle };
