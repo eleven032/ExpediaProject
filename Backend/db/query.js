@@ -1,25 +1,25 @@
-import { createConnection } from 'mysql';
-import config from './config';
+const mysql = require('mysql');
+const config = require('./config');
 
 const query = sql => new Promise((resolve, reject) => {
   try {
-    const con = createConnection(config)
+    const con = mysql.createConnection(config);
 
     con.connect(function (err, connection) {
       if (err) {
-        reject(err)
+        reject(err);
         return
       }
 
       con.query(sql, function (err, rows) {
         if (!err) {
-          resolve(rows)
+          resolve(rows);
         }
       })
     })
   } catch (error) {
-    reject(error)
+    reject(error);
   }
 })
 
-export default query
+module.exports = query;
