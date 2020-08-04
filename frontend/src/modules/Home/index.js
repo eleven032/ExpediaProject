@@ -7,10 +7,10 @@ import {
   Button,
 } from '@material-ui/core';
 
-import useStyles from '../../utils/AppMakeStyle';
+import { homePageStyle } from '../../utils/AppMakeStyle';
 
 function Home({ history }) {
-  const classes = useStyles();
+  const classes = homePageStyle();
   console.log(history);
 
   return <Grid container component="main" className={classes.root}>
