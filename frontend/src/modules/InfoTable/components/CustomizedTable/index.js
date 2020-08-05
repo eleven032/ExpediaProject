@@ -1,22 +1,20 @@
 import React from 'react';
-
 import MaterialTable from 'material-table';
 import tableIcons from '../../../../utils/TableIcons';
 
 function CustomizedTable({ data }) {
   return <MaterialTable
-    title="Example"
+    title="Contact List"
     icons={tableIcons}
     columns={[
+      { title: 'ID', field: 'id' },
       { title: 'Ttile', field: 'title' },
       { title: 'Name', field: 'name' },
       { title: 'Age', field: 'age' },
       { title: 'Favorite Flag', field: 'favoriteFlag' },
       { title: 'Contact Detail', field: 'contactDetail' },
     ]}
-    data={[
-      { title: 'Mrs', name: 'Baran', age: 20, favoriteFlag: 2, contactDetail: 3 }
-    ]}
+    data={data}
     options={{
       search: true
     }}
