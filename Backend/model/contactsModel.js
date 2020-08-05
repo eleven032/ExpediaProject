@@ -5,7 +5,7 @@ const getContactList = () => query(
   FROM expedia.contact as A
   JOIN 
   (SELECT UserID, COUNT(UserID) as count FROM expedia.contactdetail group by UserID) AS B
-  ON A.UserID = B.UserID;
+  ON A.UserID = B.UserID limit 10;
 `);
 
 module.exports = getContactList;

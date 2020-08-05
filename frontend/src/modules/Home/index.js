@@ -11,7 +11,6 @@ import { homePageStyle } from '../../utils/AppMakeStyle';
 
 function Home({ history }) {
   const classes = homePageStyle();
-  console.log(history);
 
   return <Grid container component="main" className={classes.root}>
     <CssBaseline />

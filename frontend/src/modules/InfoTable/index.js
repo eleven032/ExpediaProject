@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 import { Paper } from '@material-ui/core';
+import { toJS } from 'mobx';
+import { observer } from 'mobx-react';
 
 import CustomizedTable from './components/CustomizedTable';
 import UserStore from './store';
@@ -15,9 +17,9 @@ function InfoTable() {
 
   return (
     <Paper className={classes.root}>
-      <CustomizedTable />
+      <CustomizedTable data={toJS(UserStore.userList)} />
     </Paper >
   );
 }
 
-export default InfoTable;
+export default observer(InfoTable);
