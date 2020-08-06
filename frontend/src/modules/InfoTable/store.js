@@ -1,8 +1,10 @@
+import 'mobx-react-lite/batchingForReactDom';
 import {
-  observable, action, runInAction,
+  observable, action, runInAction, toJS,
 } from 'mobx';
 import httpRequest from '@utils/httpRequest';
 import { ageCalculate } from '@utils/helper';
+
 class UserStore {
   @observable userList = [];
 
@@ -10,14 +12,15 @@ class UserStore {
 
   @observable error = null;
 
-  @action async getUserList() {
+  @action async getUserList(pageNumber, rowsPerPage) {
     this.isLoading = true;
     this.error = null;
-    const url = '/contacts';
+    const url = `/contacts?pageNumber=${pageNumber}&rowsPerPage=${rowsPerPage}`;
 
     try {
       const res = await httpRequest.get(url);
-      // const tmp = 
+      this.userList = [];
+
       res.data.contactList.map((contact) =>
         this.userList.push({
           id: contact.UserID,
@@ -28,9 +31,8 @@ class UserStore {
           contactDetail: contact.count,
         })
       );
-      console.log(this.userList)
+      // console.log(toJS(this.userList));
     } catch (e) {
-      console.log(e)
       runInAction(() => { this.error = e; });
     } finally {
       runInAction(() => { this.isLoading = false; });

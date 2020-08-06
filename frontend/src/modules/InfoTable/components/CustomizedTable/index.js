@@ -1,8 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { toJS } from 'mobx';
+import { observer } from 'mobx-react';
+
+import { TablePagination } from '@material-ui/core';
 import MaterialTable from 'material-table';
 import tableIcons from '../../../../utils/TableIcons';
 
-function CustomizedTable({ data }) {
+import UserStore from '../../store';
+
+function CustomizedTable() {
+  const [pageNumber, setPageNumber] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+
+  useEffect(() => {
+    UserStore.getUserList(pageNumber, rowsPerPage);
+  }, [pageNumber, rowsPerPage]);
+
   return <MaterialTable
     title="Contact List"
     icons={tableIcons}
@@ -14,11 +27,28 @@ function CustomizedTable({ data }) {
       { title: 'Favorite Flag', field: 'favoriteFlag' },
       { title: 'Contact Detail', field: 'contactDetail' },
     ]}
-    data={data}
+    data={toJS(UserStore.userList)}
     options={{
-      search: true
+      search: true,
+      pageSize: rowsPerPage,
+    }}
+    components={{
+      Pagination: () => (
+        <TablePagination
+          count={100}
+          page={pageNumber}
+          onChangePage={(event, value) => {
+            setPageNumber(value);
+          }}
+          rowsPerPage={rowsPerPage}
+          onChangeRowsPerPage={(event) => {
+            setRowsPerPage(parseInt(event.target.value, 10));
+            setPageNumber(1)
+          }}
+        />
+      )
     }}
   />
 }
 
-export default CustomizedTable;
+export default observer(CustomizedTable);

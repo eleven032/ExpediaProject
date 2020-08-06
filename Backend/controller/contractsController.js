@@ -1,8 +1,10 @@
 const getContactList = require('../model/contactsModel');
-// import getContactList from '../model/contactsModel';
+
 const getContacts = async (req, res) => {
+  const { pageNumber, rowsPerPage } = req.query;
+
   try {
-    const contactList = await getContactList();
+    const contactList = await getContactList(pageNumber, rowsPerPage);
     res.status(200).send({
       status: 'SUCCESS',
       data: {

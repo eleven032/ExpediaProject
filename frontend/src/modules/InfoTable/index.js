@@ -1,25 +1,17 @@
-import React, { useEffect } from 'react';
-import { Paper } from '@material-ui/core';
-import { toJS } from 'mobx';
-import { observer } from 'mobx-react';
-
+import React from 'react';
 import CustomizedTable from './components/CustomizedTable';
-import UserStore from './store';
+import { Paper } from '@material-ui/core';
 
 import { infoTableStyle } from '../../utils/AppMakeStyle';
 
 function InfoTable() {
   const classes = infoTableStyle();
 
-  useEffect(() => {
-    UserStore.getUserList();
-  });
-
   return (
     <Paper className={classes.root}>
-      <CustomizedTable data={toJS(UserStore.userList)} />
+      <CustomizedTable />
     </Paper >
   );
 }
 
-export default observer(InfoTable);
+export default InfoTable;

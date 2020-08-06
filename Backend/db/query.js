@@ -3,19 +3,12 @@ const config = require('./config');
 
 const query = sql => new Promise((resolve, reject) => {
   try {
-    const con = mysql.createConnection(config);
+    const con = mysql.createPool(config);
 
-    con.connect(function (err, connection) {
-      if (err) {
-        reject(err);
-        return
+    con.query(sql, function (err, rows) {
+      if (!err) {
+        resolve(rows);
       }
-
-      con.query(sql, function (err, rows) {
-        if (!err) {
-          resolve(rows);
-        }
-      })
     })
   } catch (error) {
     reject(error);
