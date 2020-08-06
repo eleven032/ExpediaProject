@@ -46,8 +46,8 @@ function CustomizedTable() {
           }}
           rowsPerPage={rowsPerPage}
           onChangeRowsPerPage={(event) => {
-            setRowsPerPage(parseInt(event.target.value, 10));
-            setPageNumber(1)
+            setRowsPerPage(parseInt(event.target.value, rowsPerPage));
+            setPageNumber(0);
           }}
         />
       )
