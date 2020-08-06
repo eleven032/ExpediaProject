@@ -30,7 +30,11 @@ function CustomizedTable() {
     data={toJS(UserStore.userList)}
     options={{
       search: true,
+      paging: true,
       pageSize: rowsPerPage,
+    }}
+    onChangeRowsPerPage={(pageSize) => {
+      setRowsPerPage(pageSize);
     }}
     components={{
       Pagination: () => (
