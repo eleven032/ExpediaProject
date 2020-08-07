@@ -1,6 +1,6 @@
 const query = require('../db/query');
 
-const getContactList = (pageNumber = 0, rowsPerPage = 5) => {
+const getContactList = (pageNumber = 0, rowsPerPage = 10) => {
   const limitStart = rowsPerPage * pageNumber;
   const limitEnd = limitStart + Number(rowsPerPage);
   return query(
@@ -9,7 +9,13 @@ const getContactList = (pageNumber = 0, rowsPerPage = 5) => {
     JOIN 
     (SELECT UserID, COUNT(UserID) as count FROM expedia.contactdetail group by UserID) AS B
     ON A.UserID = B.UserID limit ${limitStart},${limitEnd};`
-  )
+  );
 };
 
-module.exports = getContactList;
+const getContactDetail = (userID) => {
+  return query(`
+    select * from expedia.contactdetail where UserID = ${userID};
+  `);
+}
+
+module.exports = { getContactList, getContactDetail };
