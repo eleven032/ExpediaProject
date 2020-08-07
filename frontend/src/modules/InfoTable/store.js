@@ -1,6 +1,6 @@
 import 'mobx-react-lite/batchingForReactDom';
 import {
-  observable, action, runInAction, toJS,
+  observable, action, runInAction,
 } from 'mobx';
 import httpRequest from '@utils/httpRequest';
 import { ageCalculate } from '@utils/helper';
@@ -31,7 +31,6 @@ class UserStore {
           contactDetail: contact.count,
         })
       );
-      // console.log(toJS(this.userList));
     } catch (e) {
       runInAction(() => { this.error = e; });
     } finally {

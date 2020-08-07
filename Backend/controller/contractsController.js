@@ -1,4 +1,4 @@
-const getContactList = require('../model/contactsModel');
+const { getContactList, getContactDetail } = require('../model/contactsModel');
 
 const getContacts = async (req, res) => {
   const { pageNumber, rowsPerPage } = req.query;
@@ -19,4 +19,23 @@ const getContacts = async (req, res) => {
   }
 };
 
-module.exports = { getContacts };
+const getUserContactDetail = async (req, res) => {
+  const { userID } = req.query;
+
+  try {
+    const userDetail = await getContactDetail(userID);
+    res.status(200).send({
+      status: 'SUCCESS',
+      data: {
+        userDetail
+      }
+    });
+  } catch (e) {
+    res.status(500).send({
+      status: 'error',
+      message: e
+    })
+  }
+};
+
+module.exports = { getContacts, getUserContactDetail };
