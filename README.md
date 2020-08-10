@@ -2,7 +2,7 @@
 For interview project
 
 
-## Sart
+## Start
 Please use command line and input follow command
 
 ### Start Backend server
@@ -47,6 +47,8 @@ Step 4. ``` npm start```
 
 localhost is the ip address of your local machine
 
+---
+
 
 Total Time cost 12 hours
 
@@ -56,3 +58,7 @@ DB: MySQL
 
 sort, search, only work on data which shows on the page.
 Skipped requirenment: page to show the contact details because of current work load.
+
+Possible improvement:
+1. Add more error handling
+2. Add more unit tests
